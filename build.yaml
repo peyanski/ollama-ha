@@ -1,0 +1,4 @@
+build_from:
+  amd64: ghcr.io/home-assistant/amd64-base-debian:latest
+  aarch64: ghcr.io/home-assistant/aarch64-base-debian:latest
+args: {}

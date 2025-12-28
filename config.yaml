@@ -1,0 +1,20 @@
+name: "Ollama"
+slug: "ollama-ha"
+version: "0.1.1"
+description: "Run Ollama on Home Assistant Server"
+startup: services
+init: false
+arch:
+  - amd64
+  - aarch64
+ports:
+  11434/tcp: 11434
+host_network: true
+panel_icon: mdi:brain
+
+environment:
+  HOME: "/data"
+  OLLAMA_HOST: "0.0.0.0:11434"
+
+map:
+  - share:rw
