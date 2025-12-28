@@ -32,7 +32,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and Push
-        uses: home-assistant/builder@main
+        uses: home-assistant/builder@master
         with:
           args: |
             --all \
