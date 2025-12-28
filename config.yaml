@@ -7,6 +7,7 @@ init: false
 arch:
   - amd64
   - aarch64
+image: ghcr.io/peyanski/ollama-ha-{arch}
 ports:
   11434/tcp: 11434
 host_network: true
@@ -18,3 +19,6 @@ environment:
 
 map:
   - share:rw
+build_from:
+  amd64: ghcr.io/home-assistant/amd64-base:latest
+  aarch64: ghcr.io/home-assistant/aarch64-base:latest
