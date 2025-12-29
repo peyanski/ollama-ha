@@ -42,4 +42,5 @@ jobs:
             --amd64 \
             --aarch64 \
             --target ./ollama-ha \
-            --docker-hub ghcr.io/${{ github.repository_owner }}
+            --docker-hub ghcr.io/${{ github.repository_owner }} \
+            --push
