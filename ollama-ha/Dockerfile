@@ -1,10 +1,9 @@
 ARG BUILD_FROM
-FROM $BUILD_FROM
+FROM ${BUILD_FROM}
 
-RUN apt-get update \
- && apt-get install -y curl ca-certificates \
- && curl -fsSL https://ollama.com/install.sh | sh \
- && rm -rf /var/lib/apt/lists/*
+# Install required packages using apk
+RUN apk add --no-cache curl bash ca-certificates \
+    && curl -fsSL https://ollama.com/install.sh | sh
 
 ENV HOME=/data
 ENV OLLAMA_HOST=0.0.0.0:11434
