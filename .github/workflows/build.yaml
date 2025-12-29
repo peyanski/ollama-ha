@@ -34,8 +34,8 @@ jobs:
       - name: Build & Push Multi-Arch Image
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./ollama-ha
+          file: ./ollama-ha/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
