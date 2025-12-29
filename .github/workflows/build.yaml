@@ -38,5 +38,5 @@ jobs:
             --amd64 \
             --aarch64 \
             --no-cache \
-            --target /ollama-ha \
+            --target ollama-ha \
             --docker-hub ghcr.io/${{ github.repository_owner }}
