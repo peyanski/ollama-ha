@@ -4,10 +4,10 @@ version: "0.1.1"
 description: "Run Ollama on Home Assistant Server"
 startup: services
 init: false
+image: ghcr.io/peyanski/ollama-ha
 arch:
   - amd64
   - aarch64
-image: ghcr.io/peyanski/ollama-ha-{arch}
 ports:
   11434/tcp: 11434
 host_network: true
