@@ -35,13 +35,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Step 5: Build and push multi-arch images
-      - name: Build and Push Ollama Add-on
+      - name: Build and Push
         uses: home-assistant/builder@2025.11.0
         with:
           args: |
-            --amd64
-            --aarch64
-            --no-cache
-            --target ollama-ha
+            --amd64 \
+            --aarch64 \
+            --target ./ollama-ha \
             --docker-hub ghcr.io/${{ github.repository_owner }}
