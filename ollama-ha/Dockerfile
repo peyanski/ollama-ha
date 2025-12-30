@@ -7,13 +7,13 @@ RUN apk add --no-cache curl bash ca-certificates
 # Install Ollama based on architecture
 ARG TARGETARCH
 RUN if [ "$TARGETARCH" = "amd64" ]; then \
-        curl -L https://ollama.com/download/ollama-linux-amd64 -o /usr/bin/ollama; \
+        curl -L https://ollama.com/download/ollama-linux-amd64 -o /usr/local/bin/ollama; \
     elif [ "$TARGETARCH" = "arm64" ]; then \
-        curl -L https://ollama.com/download/ollama-linux-arm64 -o /usr/bin/ollama; \
+        curl -L https://ollama.com/download/ollama-linux-arm64 -o /usr/local/bin/ollama; \
     else \
         echo "Unsupported architecture: $TARGETARCH" && exit 1; \
     fi \
-    && chmod +x /usr/bin/ollama
+    && chmod +x /usr/local/bin/ollama
 
 ENV HOME=/data
 ENV OLLAMA_HOST=0.0.0.0:11434
