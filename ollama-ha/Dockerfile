@@ -2,7 +2,10 @@ ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.19
 FROM ${BUILD_FROM}
 
 # Install required packages
-RUN apk add --no-cache curl bash ca-certificates libc6-compat
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Ollama based on architecture
 ARG TARGETARCH
