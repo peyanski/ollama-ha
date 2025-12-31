@@ -1,7 +1,8 @@
 name: "Ollama"
 slug: "ollama-ha"
-version: "0.1.2"
-description: "Run Ollama on Home Assistant Server"
+version: "0.1.1"
+description: "Run Ollama LLM server locally on your Home Assistant instance."
+url: "https://github.com/peyanski/ollama-ha"
 startup: services
 init: false
 image: ghcr.io/peyanski/{arch}-ollama-ha
@@ -12,6 +13,15 @@ ports:
   11434/tcp: 11434
 host_network: true
 panel_icon: mdi:brain
+video: true
+
+options:
+  models: []
+  gpu: false
+schema:
+  models:
+    - str
+  gpu: bool
 
 environment:
   HOME: "/data"
@@ -19,4 +29,5 @@ environment:
 
 map:
   - share:rw
+
 
