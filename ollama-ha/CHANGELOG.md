@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2
+
+- Feat: **Simplified Authentication**.
+    - Displays your SSH Public Key in the logs on startup for easy addition to Ollama.com.
+    - Added `start_auth` toggle to trigger the sign-in flow and show the code/link in logs.
+
 ## 0.2.1
 
 - Fix: Restore documentation visibility in Home Assistant (symlink correction).

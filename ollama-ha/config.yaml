@@ -17,8 +17,10 @@ video: true
 
 options:
   gpu: false
+  start_auth: false
 schema:
   gpu: bool
+  start_auth: bool
 
 environment:
   HOME: "/data"

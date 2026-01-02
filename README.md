@@ -48,6 +48,24 @@ To integrate Ollama with Home Assistant (e.g., for Conversation Agents & AI Task
 
 For more info on using the integration and downloading models, see the [Home Assistant Ollama Docs](https://www.home-assistant.io/integrations/ollama/).
 
+## Authentication (Cloud Models)
+
+To use Ollama's cloud models (e.g., `gpt-oss:120b-cloud`), you need to authenticate your instance.
+
+**Method 1: Add Key Manually (Recommended)**
+1.  Start the add-on and wait for it to initialize.
+2.  Check the **Log** tab. You will see a block starting with `🔑 OLLAMA PUBLIC KEY`.
+3.  Copy the key (starts with `ssh-ed25519...`).
+4.  Go to [https://ollama.com/settings/keys](https://ollama.com/settings/keys) and add the key.
+5.  Restart the add-on. You can now pull cloud models!
+
+**Method 2: Interactive Sign-in**
+1.  Go to the **Configuration** tab.
+2.  Toggle `start_auth` to `true` and restart the add-on.
+3.  Check the **Log** tab effectively immediately.
+4.  You will see `🔐 OLLAMA SIGNIN CODE` and a link/code. Follow the instructions.
+5.  After authenticating, disable `start_auth` and restart the add-on.
+
 ## Manual Model Download
 
 To download a model (e.g., `llama3`):
