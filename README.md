@@ -4,6 +4,9 @@ Run [Ollama](https://ollama.com/) locally on your Home Assistant instance.
 
 ## Installation Instructions
 
+> [!TIP]
+> For detailed installation instructions of the Add-on and examples, download my PDF: [https://automatelike.pro/ollama-ha](https://automatelike.pro/ollama-ha)
+
 > [!WARNING]
 > **Large Download Warning**: The add-on image is over **3.7GB**.
 > Installation can take **25-30 minutes** or more on a Raspberry Pi 5, depending on your internet speed and SD card performance. Please be patient and ensure you have sufficient disk space.
@@ -20,9 +23,6 @@ Run [Ollama](https://ollama.com/) locally on your Home Assistant instance.
     - Check the "Log" tab to ensure the server starts listening on port `11434`.
 
 ## Configuration
-
-> [!TIP]
-> For detailed installation instructions of the Add-on and examples, download my PDF: [https://automatelike.pro/ollama-ha](https://automatelike.pro/ollama-ha)
 
 ### GPU Support
 
@@ -43,7 +43,7 @@ To integrate Ollama with Home Assistant (e.g., for Conversation Agents & AI Task
 1.  Go to **Settings** > **Devices & Services**.
 2.  Click **Add Integration**.
 3.  Search for **Ollama**.
-4.  **URL**: Enter `http://localhost:11434` (or your HA IP address).
+4.  **URL**: Enter `http://127.0.0.1:11434` (or your HA IP address).
 5.  **Model**: Select the name of a model you want to use (e.g., `llama3.2`, `gpt-oss:120b-cloud`, etc.).
 
 For more info on using the integration and downloading models, see the [Home Assistant Ollama Docs](https://www.home-assistant.io/integrations/ollama/).
