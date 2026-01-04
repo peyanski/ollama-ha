@@ -2,6 +2,20 @@
 
 Run [Ollama](https://ollama.com/) locally on your Home Assistant instance.
 
+---
+
+<p align="center">
+  <a href="https://buymeacoffee.com/peyanski" target="_blank">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50">
+  </a>
+</p>
+
+<p align="center">
+  <strong>If you find this add-on useful, consider supporting my work! ☕</strong>
+</p>
+
+---
+
 ## Installation Instructions
 
 > [!TIP]
