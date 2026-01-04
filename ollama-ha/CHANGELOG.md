@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.3
+
+- Feat: Added **icon.png** and **logo.png** for add-on branding in Home Assistant.
+
 ## 0.2.2
 
 - Feat: **Simplified Authentication**.
