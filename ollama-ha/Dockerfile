@@ -9,10 +9,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Ollama based on architecture
-ARG TARGETARCH
-RUN curl -fsSL "https://ollama.com/download/ollama-linux-${TARGETARCH}.tgz" -o ollama.tgz \
-    && tar -C /usr/local -xzf ollama.tgz \
-    && rm ollama.tgz
+RUN ARCH=$(uname -m) && \
+    if [ "$ARCH" = "x86_64" ]; then ARCH="amd64"; fi && \
+    if [ "$ARCH" = "aarch64" ]; then ARCH="arm64"; fi && \
+    curl -fsSL "https://ollama.com/download/ollama-linux-${ARCH}.tgz" -o ollama.tgz && \
+    tar -C /usr/local -xzf ollama.tgz && \
+    rm ollama.tgz
 
 ENV HOME=/data
 ENV OLLAMA_HOST=0.0.0.0:11434
