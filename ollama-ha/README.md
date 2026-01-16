@@ -37,7 +37,7 @@ This add-on provides a robust local AI backend and includes:
   - Optional **GPU support** (configurable via toggle).
   - Optimized for Raspberry Pi 5 and other ARM64 devices.
 - **Flexible Management**:
-  - Full CLI access via Docker/SSH to pull and manage models.
+  - **Full CLI Access**: Use Docker/SSH to manually **list and delete** models (`ollama rm`) to manage disk space.
   - REST API exposed for custom integrations.
 - **Persistent Storage**: Models are stored in `/data`, preserved across add-on restarts and updates.
 - **Cloud Compatibility**: Optional authentication support solely for pulling private or licensed models from Ollama's library.

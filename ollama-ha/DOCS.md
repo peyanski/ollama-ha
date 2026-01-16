@@ -68,11 +68,41 @@ To use Ollama's cloud models (e.g., `gpt-oss:120b-cloud`), you need to authentic
 4.  You will see `🔐 OLLAMA SIGNIN CODE` and a link/code. Follow the instructions.
 5.  After authenticating, disable `start_auth` and restart the add-on.
 
-## Manual Model Download
+## Manage Models (List & Delete)
 
-To download a model (e.g., `llama3`):
+To free up disk space or check what is installed, use the command line.
 
-1.  Install [Advanced SSH & Web Terminal Add-on](https://my.home-assistant.io/redirect/supervisor_addon/?addon=a0d7b954_ssh) and run it
-2.  Run: `docker ps` to find the exact name of the Ollama container 
-3.  Run: `docker exec -it addon_ad7c61ed_ollama-ha bash` to access the container terminal and replace `addon_ad7c61ed_ollama-ha` with your container name.
-4.  Inside container pull the AI model of your choice, for example: `ollama pull qwen2.5:0.5b` or cloud model like `ollama pull gpt-oss:120b-cloud` (but you need to have free account on Ollama to use cloud models and to signin with `ollama signin`)
+### Prerequisites
+
+1.  Install the **[Advanced SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh)** add-on.
+2.  Start it and open the terminal.
+
+### Accessing the Ollama Terminal
+
+1.  **Find Container Name**:
+    ```bash
+    docker ps | grep ollama-ha
+    ```
+    *(Look for a name like `addon_ad7c61ed_ollama-ha`)*.
+
+2.  **Enter Container**:
+    ```bash
+    docker exec -it addon_ad7c61ed_ollama-ha bash
+    ```
+    *(Replace `addon_ad7c61ed_ollama-ha` with your actual container name)*.
+
+### List & Delete
+
+Once inside the container:
+
+*   **List Installed Models**:
+    Check which models are using space.
+    ```bash
+    ollama list
+    ```
+
+*   **Delete a Model**:
+    Remove a model by name.
+    ```bash
+    ollama rm llama3.2
+    ```
