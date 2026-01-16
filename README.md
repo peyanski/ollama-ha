@@ -34,45 +34,41 @@ By default, GPU support is **disabled** to ensure compatibility. If you have a s
 2.  Toggle **gpu** to `true`.
 3.  Restart the add-on.
 
-### Models
+## Manage Models (List & Delete)
 
-Add models to the `models` list in the configuration if you wish to track them (note: auto-download is not strictly enforced yet, please pull manually for control).
+To free up disk space or check what is installed, use the command line.
 
-## Using with Home Assistant
+### Prerequisites
 
-To integrate Ollama with Home Assistant (e.g., for Conversation Agents & AI Tasks):
+1.  Install the **[Advanced SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh)** add-on.
+2.  Start it and open the terminal.
 
-1.  Go to **Settings** > **Devices & Services**.
-2.  Click **Add Integration**.
-3.  Search for **Ollama**.
-4.  **URL**: Enter `http://127.0.0.1:11434` (or your HA IP address).
-5.  **Model**: Select the name of a model you want to use (e.g., `llama3.2`, `gpt-oss:120b-cloud`, etc.).
+### Accessing the Ollama Terminal
 
-For more info on using the integration and downloading models, see the [Home Assistant Ollama Docs](https://www.home-assistant.io/integrations/ollama/).
+1.  **Find Container Name**:
+    ```bash
+    docker ps | grep ollama-ha
+    ```
+    *(Look for a name like `addon_ad7c61ed_ollama-ha`)*.
 
-## Authentication (Cloud Models)
+2.  **Enter Container**:
+    ```bash
+    docker exec -it addon_ad7c61ed_ollama-ha bash
+    ```
+    *(Replace `addon_ad7c61ed_ollama-ha` with your actual container name)*.
 
-To use Ollama's cloud models (e.g., `gpt-oss:120b-cloud`), you need to authenticate your instance.
+### List & Delete
 
-**Method 1: Add Key Manually (Recommended)**
-1.  Start the add-on and wait for it to initialize.
-2.  Check the **Log** tab. You will see a block starting with `🔑 OLLAMA PUBLIC KEY`.
-3.  Copy the key (starts with `ssh-ed25519...`).
-4.  Go to [https://ollama.com/settings/keys](https://ollama.com/settings/keys) and add the key.
-5.  Restart the add-on. You can now pull cloud models!
+Once inside the container:
 
-**Method 2: Interactive Sign-in**
-1.  Go to the **Configuration** tab.
-2.  Toggle `start_auth` to `true` and restart the add-on.
-3.  Check the **Log** tab effectively immediately.
-4.  You will see `🔐 OLLAMA SIGNIN CODE` and a link/code. Follow the instructions.
-5.  After authenticating, disable `start_auth` and restart the add-on.
+*   **List Installed Models**:
+    Check which models are using space.
+    ```bash
+    ollama list
+    ```
 
-## Manual Model Download
-
-To download a model (e.g., `llama3`):
-
-1.  Install [Advanced SSH & Web Terminal Add-on](https://my.home-assistant.io/redirect/supervisor_addon/?addon=a0d7b954_ssh) and run it
-2.  Run: `docker ps` to find the exact name of the Ollama container 
-3.  Run: `docker exec -it addon_ad7c61ed_ollama-ha bash` to access the container terminal and replace `addon_ad7c61ed_ollama-ha` with your container name.
-4.  Inside container pull the AI model of your choice, for example: `ollama pull qwen2.5:0.5b` or cloud model like `ollama pull gpt-oss:120b-cloud` (but you need to have free account on Ollama to use cloud models and to signin with `ollama signin`)
+*   **Delete a Model**:
+    Remove a model by name.
+    ```bash
+    ollama rm llama3.2
+    ```
