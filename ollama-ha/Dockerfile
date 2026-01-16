@@ -1,4 +1,9 @@
 ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.19
+
+# Stage 1: Pull Ollama binary from official image
+FROM ollama/ollama:latest as builder
+
+# Stage 2: Final Add-on Image
 FROM ${BUILD_FROM}
 
 # Install required packages
@@ -8,13 +13,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Ollama based on architecture
-RUN ARCH=$(uname -m) && \
-    if [ "$ARCH" = "x86_64" ]; then ARCH="amd64"; fi && \
-    if [ "$ARCH" = "aarch64" ]; then ARCH="arm64"; fi && \
-    curl -fsSL "https://ollama.com/download/ollama-linux-${ARCH}.tgz" -o ollama.tgz && \
-    tar -C /usr/local -xzf ollama.tgz && \
-    rm ollama.tgz
+# Copy Ollama binary from official image
+COPY --from=builder /bin/ollama /usr/local/bin/ollama
 
 ENV HOME=/data
 ENV OLLAMA_HOST=0.0.0.0:11434
