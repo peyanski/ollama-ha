@@ -1,4 +1,4 @@
-name: "Ollama"
+name: "Ollama-HA"
 slug: "ollama-ha"
 version: "0.2.4"
 description: "Run Ollama LLM server locally on your Home Assistant instance."

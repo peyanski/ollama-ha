@@ -50,7 +50,7 @@ if [ "$START_AUTH" == "true" ]; then
     mkdir -p /root/.ollama # Symlink or copy might be needed if HOME isn't respected by client
     echo "" | timeout 60 /usr/local/bin/ollama signin
     echo "---------------------------------------------------------"
-    echo "After authorizing, please RESTART this add-on."
+    echo "After authorizing, please RESTART this app."
     
     # Wait for background process
     wait $OLLAMA_PID

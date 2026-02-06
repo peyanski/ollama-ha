@@ -1,4 +1,4 @@
-# Home Assistant Ollama App
+# Home Assistant Ollama-HA App
 
 Run [Ollama](https://ollama.com/) locally on your Home Assistant instance.
 
