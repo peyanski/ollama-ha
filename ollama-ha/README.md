@@ -1,4 +1,4 @@
-# Home Assistant Ollama Add-on
+# Home Assistant Ollama App
 
 Run [Ollama](https://ollama.com/) locally on your Home Assistant instance.
 
@@ -15,20 +15,20 @@ Run [Ollama](https://ollama.com/) locally on your Home Assistant instance.
 </p>
 
 <p align="center">
-  <strong>If you find this add-on useful, consider supporting my work! ☕</strong>
+  <strong>If you find this app useful, consider supporting my work! ☕</strong>
 </p>
 
 ---
 
 ## About
 
-This add-on allows you to run a full-featured **Ollama** server locally on your Home Assistant instance. It empowers your smart home with local AI capabilities, ensuring your data remains private and your automations run with low latency.
+This app allows you to run a full-featured **Ollama** server locally on your Home Assistant instance. It empowers your smart home with local AI capabilities, ensuring your data remains private and your automations run with low latency.
 
-Designed for ease of use, this add-on integrates seamlessly with the official [Home Assistant Ollama integration](https://www.home-assistant.io/integrations/ollama/) and other AI-powered tools.
+Designed for ease of use, this app integrates seamlessly with the official [Home Assistant Ollama integration](https://www.home-assistant.io/integrations/ollama/) and other AI-powered tools.
 
 ## Features
 
-This add-on provides a robust local AI backend and includes:
+This app provides a robust local AI backend and includes:
 
 - **Local Inference**: Run powerful LLMs (Large Language Models) like Llama 3.2, Qwen, and Phi entirely on your own device.
 
@@ -39,5 +39,5 @@ This add-on provides a robust local AI backend and includes:
 - **Flexible Management**:
   - **Full CLI Access**: Use Docker/SSH to manually **list and delete** models (`ollama rm`) to manage disk space.
   - REST API exposed for custom integrations.
-- **Persistent Storage**: Models are stored in `/data`, preserved across add-on restarts and updates.
+- **Persistent Storage**: Models are stored in `/data`, preserved across app restarts and updates.
 - **Cloud Compatibility**: Optional authentication support solely for pulling private or licensed models from Ollama's library.

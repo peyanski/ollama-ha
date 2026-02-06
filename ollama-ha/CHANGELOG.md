@@ -1,8 +1,13 @@
 # Changelog
 
+## 0.2.4
+
+- Refactor: Renamed "add-on" to "app" across all documentation and descriptions.
+- Build: Switched to multi-stage Docker build for robust binary installation.
+
 ## 0.2.3
 
-- Feat: Added **icon.png** and **logo.png** for add-on branding in Home Assistant.
+- Feat: Added **icon.png** and **logo.png** for app branding in Home Assistant.
 
 ## 0.2.2
 

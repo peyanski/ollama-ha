@@ -1,4 +1,4 @@
-# Home Assistant Ollama Add-on
+# Home Assistant Ollama App
 
 Run [Ollama](https://ollama.com/) locally on your Home Assistant instance.
 
@@ -7,20 +7,20 @@ Run [Ollama](https://ollama.com/) locally on your Home Assistant instance.
 ## Installation Instructions
 
 > [!TIP]
-> For detailed installation instructions of the Add-on and examples, download my PDF: [https://automatelike.pro/ollama-ha](https://automatelike.pro/ollama-ha)
+> For detailed installation instructions of the App and examples, download my PDF: [https://automatelike.pro/ollama-ha](https://automatelike.pro/ollama-ha)
 
 > [!WARNING]
-> **Large Download Warning**: The add-on image is over **3.7GB**.
+> **Large Download Warning**: The app image is over **3.7GB**.
 > Installation can take **25-30 minutes** or more on a Raspberry Pi 5, depending on your internet speed and SD card performance. Please be patient and ensure you have sufficient disk space.
 
 1.  **Add Repository**:
-    - Go to **Settings** > **Add-ons** > **Add-on Store**.
+    - Go to **Settings** > **Apps** > **App Store**.
     - Click the three dots in the top right > **Repositories**.
     - Add the URL of this repository: `https://github.com/peyanski/ollama-ha`.
-2.  **Install Add-on**:
+2.  **Install App**:
     - Scroll down or search for "Ollama".
     - Click **Install**. *(This is the long step!)*
-3.  **Start Add-on**:
+3.  **Start App**:
     - Once installed, toggle "Start on boot" and click **Start**.
     - Check the "Log" tab to ensure the server starts listening on port `11434`.
 
@@ -32,7 +32,7 @@ By default, GPU support is **disabled** to ensure compatibility. If you have a s
 
 1.  Go to the **Configuration** tab.
 2.  Toggle **gpu** to `true`.
-3.  Restart the add-on.
+3.  Restart the app.
 
 ### Models
 
@@ -55,18 +55,18 @@ For more info on using the integration and downloading models, see the [Home Ass
 To use Ollama's cloud models (e.g., `gpt-oss:120b-cloud`), you need to authenticate your instance.
 
 **Method 1: Add Key Manually (Recommended)**
-1.  Start the add-on and wait for it to initialize.
+1.  Start the app and wait for it to initialize.
 2.  Check the **Log** tab. You will see a block starting with `🔑 OLLAMA PUBLIC KEY`.
 3.  Copy the key (starts with `ssh-ed25519...`).
 4.  Go to [https://ollama.com/settings/keys](https://ollama.com/settings/keys) and add the key.
-5.  Restart the add-on. You can now pull cloud models!
+5.  Restart the app. You can now pull cloud models!
 
 **Method 2: Interactive Sign-in**
 1.  Go to the **Configuration** tab.
-2.  Toggle `start_auth` to `true` and restart the add-on.
+2.  Toggle `start_auth` to `true` and restart the app.
 3.  Check the **Log** tab effectively immediately.
 4.  You will see `🔐 OLLAMA SIGNIN CODE` and a link/code. Follow the instructions.
-5.  After authenticating, disable `start_auth` and restart the add-on.
+5.  After authenticating, disable `start_auth` and restart the app.
 
 ## Manage Models (List & Delete)
 
@@ -74,7 +74,7 @@ To free up disk space or check what is installed, use the command line.
 
 ### Prerequisites
 
-1.  Install the **[Advanced SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh)** add-on.
+1.  Install the **[Advanced SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh)** app.
 2.  Start it and open the terminal.
 
 ### Accessing the Ollama Terminal
