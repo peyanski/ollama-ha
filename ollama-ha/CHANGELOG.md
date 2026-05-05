@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+
+- **Upgrade**: Ollama updated from **v0.15.5** to **v0.23.0**.
+- Build: Pinned Ollama Docker image to specific version tag for reproducible builds.
+
 ## 0.2.4
 
 - Refactor: Renamed "add-on" to "app" across all documentation and descriptions.

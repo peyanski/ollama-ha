@@ -1,9 +1,9 @@
 ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.19
 
 # Stage 1: Pull Ollama binary from official image
-FROM ollama/ollama:latest as builder
+FROM ollama/ollama:0.23.0 as builder
 
-# Stage 2: Final Add-on Image
+# Stage 2: Final App Image
 FROM ${BUILD_FROM}
 
 # Install required packages
