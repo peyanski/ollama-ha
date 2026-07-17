@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+
+- **Upgrade**: Ollama updated from **v0.23.0** to **v0.32.1**.
+
 ## 0.3.0
 
 - **Upgrade**: Ollama updated from **v0.15.5** to **v0.23.0**.
