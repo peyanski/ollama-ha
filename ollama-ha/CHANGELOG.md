@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.4
+
+- **Fix**: Revert base image back to Home Assistant standard (s6-overlay) to fix startup crash.
+- **Fix**: Restored app size back to ~165MB (down from 4GB+).
+- **Fix**: Dynamic extraction of `llama-server` and libraries from official image.
+
 ## 0.3.3
 
 - **Fix**: Use official Ollama image as base to include all runners (llama-server) and GPU libraries.

@@ -1,15 +1,27 @@
 ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.19
 
-# Use the official Ollama image directly as the base
-# This ensures all binaries, runners (llama-server), and libraries are present
-FROM ollama/ollama:0.32.9
+# Stage 1: Gather Ollama binaries
+FROM ollama/ollama:0.32.9 as builder
 
-# Install required packages for HA integration
+RUN mkdir -p /export/usr/local/bin /export/usr/lib /export/lib
+RUN cp /bin/ollama /export/usr/local/bin/ollama 2>/dev/null || true
+RUN cp -r /usr/lib/ollama /export/usr/lib/ 2>/dev/null || true
+RUN cp -r /usr/local/lib/ollama /export/usr/lib/ 2>/dev/null || true
+RUN cp -r /lib/ollama /export/lib/ 2>/dev/null || true
+
+# Stage 2: Final App Image
+FROM ${BUILD_FROM}
+
+# Install required packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     jq \
     ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* || \
+    (apk add --no-cache curl jq ca-certificates)
+
+# Copy Ollama binary and runtime libraries from builder
+COPY --from=builder /export/ /
 
 ENV HOME=/data
 ENV OLLAMA_HOST=0.0.0.0:11434
