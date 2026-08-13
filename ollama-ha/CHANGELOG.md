@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.3
+
+- **Fix**: Use official Ollama image as base to include all runners (llama-server) and GPU libraries.
+- Fixes "llama-server binary not found" error for vision/multimodal models.
+
 ## 0.3.2
 
 - **Fix**: Include `llama-server` runtime binary and libraries required for vision/multimodal models.
