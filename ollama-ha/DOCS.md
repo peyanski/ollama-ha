@@ -83,13 +83,13 @@ To free up disk space or check what is installed, use the command line.
     ```bash
     docker ps | grep ollama-ha
     ```
-    *(Look for a name like `addon_ad7c61ed_ollama-ha`)*.
+    *(Look for a name like `app_ad7c61ed_ollama-ha`)*.
 
 2.  **Enter Container**:
     ```bash
-    docker exec -it addon_ad7c61ed_ollama-ha bash
+    docker exec -it app_ad7c61ed_ollama-ha bash
     ```
-    *(Replace `addon_ad7c61ed_ollama-ha` with your actual container name)*.
+    *(Replace `app_ad7c61ed_ollama-ha` with your actual container name)*.
 
 ### List & Delete
 

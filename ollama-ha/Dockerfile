@@ -30,6 +30,9 @@ COPY --from=builder /export/lib/ /usr/local/lib/ollama/
 ENV HOME=/data
 ENV OLLAMA_HOST=0.0.0.0:11434
 ENV OLLAMA_MODELS=/data/.ollama/models
+ENV OLLAMA_CONTEXT_LENGTH=2048
+ENV OLLAMA_NUM_PARALLEL=1
+ENV OLLAMA_MAX_LOADED_MODELS=1
 
 RUN mkdir -p /data/.ollama/models
 

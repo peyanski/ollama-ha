@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.6
+
+- **Perf**: Optimized default memory limits for low-RAM hosts (Raspberry Pi/Mini PCs):
+  - Set `OLLAMA_CONTEXT_LENGTH=2048` to reduce KV cache memory allocation.
+  - Set `OLLAMA_NUM_PARALLEL=1` and `OLLAMA_MAX_LOADED_MODELS=1` to prevent multi-model memory spikes.
+- **Docs**: Updated container name references from `addon_` to `app_`.
+
 ## 0.3.5
 
 - **Fix**: Resolve build error on amd64/arm64 caused by conflicting symlinks in Alpine base image during binary copy.
