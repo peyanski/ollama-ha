@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.2
+
+- **Fix**: Include `llama-server` runtime binary and libraries required for vision/multimodal models.
+- **Upgrade**: Ollama updated from **v0.32.1** to **v0.32.9**.
+
 ## 0.3.1
 
 - **Upgrade**: Ollama updated from **v0.23.0** to **v0.32.1**.
