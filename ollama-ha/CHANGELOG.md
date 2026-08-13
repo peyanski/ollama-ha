@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.5
+
+- **Fix**: Resolve build error on amd64/arm64 caused by conflicting symlinks in Alpine base image during binary copy.
+
 ## 0.3.4
 
 - **Fix**: Revert base image back to Home Assistant standard (s6-overlay) to fix startup crash.

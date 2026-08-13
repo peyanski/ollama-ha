@@ -1,6 +1,6 @@
 name: "Ollama-HA"
 slug: "ollama-ha"
-version: "0.3.4"
+version: "0.3.5"
 description: "Run Ollama LLM server locally on your Home Assistant instance."
 url: "https://github.com/peyanski/ollama-ha"
 startup: services
