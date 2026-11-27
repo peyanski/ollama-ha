@@ -44,6 +44,7 @@ jobs:
               -H 'Content-Type: application/json' \
               -d '{"model":"qwen2.5:0.5b","prompt":"Say hello.","stream":false,"options":{"num_predict":8}}' \
               | jq -e '.done == true and .eval_count > 0' > /dev/null
-            docker exec ollama-start-test ollama ps | tee "$RUNNER_TEMP/ollama-ps.txt"
-            grep -E 'qwen2.5:0.5b.*100% CPU' "$RUNNER_TEMP/ollama-ps.txt"
+            # Ollama may report AMX allocations as GPU; don't infer hardware
+            # from the processor percentage on a hosted runner.
+            docker exec ollama-start-test ollama ps
           fi
