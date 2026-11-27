@@ -18,9 +18,19 @@ video: true
 options:
   gpu: false
   start_auth: false
+  integrated_gpu: false
+  context_length: 2048
+  flash_attention: false
+  kv_cache_type: f16
+  keep_alive: 5m
 schema:
   gpu: bool
   start_auth: bool
+  integrated_gpu: bool?
+  context_length: int(1,)?
+  flash_attention: bool?
+  kv_cache_type: list(f16|q8_0|q4_0)?
+  keep_alive: str?
 
 environment:
   HOME: "/data"

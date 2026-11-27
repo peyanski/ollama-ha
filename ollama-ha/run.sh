@@ -4,6 +4,13 @@
 GPU_SUPPORT=$(jq -r '.gpu' /data/options.json)
 START_AUTH=$(jq -r '.start_auth' /data/options.json)
 
+# Optional fields may be absent in configurations created before these options.
+INTEGRATED_GPU=$(jq -r '.integrated_gpu // false' /data/options.json)
+export OLLAMA_CONTEXT_LENGTH="$(jq -r '.context_length // 2048' /data/options.json)"
+export OLLAMA_FLASH_ATTENTION="$(jq -r '.flash_attention // false' /data/options.json)"
+export OLLAMA_KV_CACHE_TYPE="$(jq -r '.kv_cache_type // "f16"' /data/options.json)"
+export OLLAMA_KEEP_ALIVE="$(jq -r '.keep_alive // "5m"' /data/options.json)"
+
 # Ensure persistence
 export HOME="/data"
 mkdir -p /data/.ollama
@@ -19,10 +26,17 @@ fi
 
 if [ "$GPU_SUPPORT" != "true" ]; then
     echo "GPU support is disabled. Forcing CPU mode."
-    export CUDA_VISIBLE_DEVICES=""
-    export ROCR_VISIBLE_DEVICES=""
+    # Ollama recommends an invalid device ID to disable CUDA and ROCm.
+    export CUDA_VISIBLE_DEVICES="-1"
+    export ROCR_VISIBLE_DEVICES="-1"
+    export OLLAMA_VULKAN=false
+    export OLLAMA_IGPU_ENABLE=0
 else
     echo "GPU support is enabled. Attempting to use available hardware."
+    if [ "$INTEGRATED_GPU" = "true" ]; then
+        export OLLAMA_VULKAN=true
+        export OLLAMA_IGPU_ENABLE=1
+    fi
 fi
 
 # Auth Flow

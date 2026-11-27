@@ -34,6 +34,31 @@ By default, GPU support is **disabled** to ensure compatibility. If you have a s
 2.  Toggle **gpu** to `true`.
 3.  Restart the app.
 
+For a supported integrated GPU, also enable `integrated_gpu`. This opts into
+Ollama's experimental Vulkan backend and integrated GPU discovery. It has no
+effect when `gpu` is false. Support depends on the device, drivers and Ollama;
+integrated GPUs share system memory. Check the startup log and `ollama ps` to
+confirm that the model actually uses the GPU. The image includes Mesa Vulkan
+drivers; hardware access and a compatible driver are still required.
+
+### Memory and model options
+
+Restart the app after changing these server defaults. Existing configurations
+without these fields retain the defaults shown here. A client can supply its
+own context length or keep-alive in a request.
+
+| Option | Default | Description |
+| --- | --- | --- |
+| `context_length` | `2048` | Default context in tokens. Larger values can require much more memory. |
+| `flash_attention` | `false` | Enable Flash Attention when supported. |
+| `kv_cache_type` | `f16` | KV cache type: `f16`, `q8_0` or `q4_0`. Quantized cache requires Flash Attention and may affect output quality. |
+| `keep_alive` | `5m` | Default model retention duration, e.g. `60s` or `5m`; `0` unloads immediately. |
+
+Start conservatively and monitor available RAM and swap under actual load.
+Configuration is stored by the Supervisor and the driver is part of the image,
+so these changes do not depend on editing a running container. A future app or
+Ollama update can still change hardware compatibility.
+
 ### Models
 
 Add models to the `models` list in the configuration if you wish to track them (note: auto-download is not strictly enforced yet, please pull manually for control).

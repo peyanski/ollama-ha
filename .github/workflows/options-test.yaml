@@ -1,0 +1,10 @@
+name: Test configuration
+on:
+  push:
+  pull_request:
+jobs:
+  options:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash -n ollama-ha/run.sh && bash tests/options.sh
