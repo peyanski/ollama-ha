@@ -1,0 +1,39 @@
+name: Test images
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-24.04
+          - arch: aarch64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build without publishing
+        run: |
+          docker build --build-arg BUILD_FROM=ghcr.io/hassio-addons/debian-base/${{ matrix.arch }}:7.3.3 -t ollama-ha-test ./ollama-ha
+      - name: Check binaries and Vulkan packages
+        run: |
+          docker run --rm --entrypoint bash ollama-ha-test -c 'ollama --version && dpkg-query -W mesa-vulkan-drivers libvulkan1 && test -d /usr/share/vulkan/icd.d'
+      - name: Start Ollama with a legacy configuration
+        run: |
+          mkdir -p "$RUNNER_TEMP/ollama-data"
+          printf '%s\n' '{"gpu":false,"start_auth":false}' > "$RUNNER_TEMP/ollama-data/options.json"
+          docker run -d --name ollama-start-test -v "$RUNNER_TEMP/ollama-data:/data" ollama-ha-test
+          trap 'docker logs ollama-start-test; docker rm -f ollama-start-test' EXIT
+          ready=false
+          for i in $(seq 1 60); do
+            if docker exec ollama-start-test curl -fsS http://127.0.0.1:11434/api/version; then ready=true; break; fi
+            sleep 2
+          done
+          test "$ready" = true
+          docker exec ollama-start-test ollama ps

@@ -20,8 +20,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     jq \
     ca-certificates \
+    mesa-vulkan-drivers \
+    libvulkan1 \
     && rm -rf /var/lib/apt/lists/* || \
-    (apk add --no-cache curl jq ca-certificates)
+    (apk add --no-cache curl jq ca-certificates mesa-vulkan-ati mesa-vulkan-intel vulkan-loader)
 
 # Copy Ollama binary and runtime libraries into safe paths
 COPY --from=builder /export/bin/ollama /usr/local/bin/ollama
