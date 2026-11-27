@@ -37,3 +37,13 @@ jobs:
           done
           test "$ready" = true
           docker exec ollama-start-test ollama ps
+          # This runner has no GPU: verifies real inference, not GPU exclusion.
+          if [ "${{ matrix.arch }}" = amd64 ]; then
+            docker exec ollama-start-test ollama pull qwen2.5:0.5b
+            docker exec ollama-start-test curl -fsS --max-time 180 http://127.0.0.1:11434/api/generate \
+              -H 'Content-Type: application/json' \
+              -d '{"model":"qwen2.5:0.5b","prompt":"Say hello.","stream":false,"options":{"num_predict":8}}' \
+              | jq -e '.done == true and .eval_count > 0' > /dev/null
+            docker exec ollama-start-test curl -fsS http://127.0.0.1:11434/api/ps \
+              | jq -e '.models | length == 1 and .[0].size_vram == 0' > /dev/null
+          fi
